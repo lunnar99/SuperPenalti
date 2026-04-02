@@ -1,0 +1,123 @@
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #111;
+  display: flex; justify-content: center; align-items: center;
+}
+
+canvas { display: block; touch-action: none; }
+
+/* ── OVERLAYS ── */
+.overlay {
+  position: fixed; inset: 0;
+  display: flex; justify-content: center; align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.76);
+  z-index: 10;
+}
+
+.overlay-box {
+  background: linear-gradient(160deg, #0d3b86 0%, #1a237e 100%);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 32px 28px;
+  width: min(88vw, 340px);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.75);
+  margin: 0 16px;
+}
+
+.overlay-box h1 {
+  font-family: sans-serif;
+  font-size: clamp(1.9rem, 7vw, 2.4rem);
+  font-weight: 900;
+  color: #f1c40f;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.overlay-subtitle {
+  font-family: sans-serif;
+  font-size: clamp(0.8rem, 3vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.68);
+  text-align: center;
+  line-height: 1.55;
+}
+
+/* ── INPUTS (login) ── */
+.overlay-box input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  color: #fff;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  font-family: sans-serif;
+  padding: 13px 15px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.overlay-box input::placeholder { color: rgba(255, 255, 255, 0.36); }
+.overlay-box input:focus { border-color: #f1c40f; background: rgba(255, 255, 255, 0.13); }
+
+.inp-error {
+  font-family: sans-serif;
+  font-size: 0.78rem;
+  color: #ff6b6b;
+  align-self: flex-start;
+  margin-top: -8px;
+  display: none;
+}
+.inp-error.show { display: block; }
+
+/* ── BOTÕES ── */
+.overlay-box button {
+  width: 100%;
+  background: #f1c40f;
+  color: #111;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  font-weight: 700;
+  font-family: sans-serif;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  transition: background 0.15s, transform 0.10s;
+}
+.overlay-box button:hover  { background: #f9d42e; }
+.overlay-box button:active { background: #e6b800; transform: scale(0.97); }
+
+/* ── TELA DE FIM ── */
+.end-title {
+  font-family: sans-serif;
+  font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.3;
+}
+.end-title.win  { color: #f1c40f; }
+.end-title.loss { color: #e74c3c; }
+
+.end-score {
+  font-family: sans-serif;
+  font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+}
+
+.shot-dots { display: flex; gap: 9px; margin: 2px 0; }
+
+.dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.09);
+}
+.dot.goal { background: #2ecc71; border-color: #27ae60; }
+.dot.miss { background: #e74c3c; border-color: #c0392b; }

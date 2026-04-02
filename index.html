@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#1565c0">
+  <title>SuperPenalti</title>
+  <link rel="stylesheet" href="estilos/estilos.css">
+</head>
+
+<body>
+  <!-- Canvas principal do jogo -->
+  <canvas id="c"></canvas>
+
+  <!-- Canvas do confete (z-index máximo, sobre todos os overlays) -->
+  <canvas id="confetti-canvas" style="position:fixed;inset:0;z-index:9999;pointer-events:none;"></canvas>
+
+  <!-- ── LOGIN (TEMPORARIAMENTE DESATIVADO) ── -->
+  <!--
+  <div class="overlay" id="overlay-login">
+    <div class="overlay-box">
+      <h1>⚽ SuperPenalti</h1>
+      <p class="overlay-subtitle">Melhor de 5 cobranças<br>Faça pelo menos <strong style="color:#f1c40f">3&nbsp;gols</strong> para ganhar!</p>
+      <input type="text" id="inp-name" placeholder="Seu nome" autocomplete="off" />
+      <span class="inp-error" id="err-name">Digite seu nome (somente letras)</span>
+      <input type="text" id="inp-cpf" inputmode="numeric" placeholder="CPF  000.000.000-00" autocomplete="off" maxlength="14" />
+      <span class="inp-error" id="err-cpf">CPF inválido (informe os 11 dígitos)</span>
+      <button id="btn-start">INICIAR ▶</button>
+    </div>
+  </div>
+  -->
+
+  <!-- ── TELA FINAL (vitória / derrota) ── -->
+  <div class="overlay" id="overlay-end" style="display:none">
+    <div class="overlay-box">
+      <div class="end-title" id="end-title"></div>
+      <div class="shot-dots" id="end-dots"></div>
+      <div class="end-score"  id="end-score"></div>
+      <button id="btn-restart">JOGAR NOVAMENTE</button>
+    </div>
+  </div>
+
+  <!--
+    ORDEM DE CARREGAMENTO (IMPORTANTE — cada arquivo depende do anterior):
+    1. constantes  → canvas, ctx, W, H, ST, MAX_SHOTS, GOALS_TO_WIN
+    2. geometria   → getGoal, getBall, rrect, easeInOut
+    3. estado      → state, goals, shots, shotResults, getSeriesResult
+    4. goleiro     → keeper
+    5. direcao     → dirSel
+    6. forca       → powSel
+    7. hud         → hudBalls, hudBallFill, resetHudBalls, drawHUD
+    8. chute       → kick  (usa: getBall, getGoal, dirSel, powSel, keeper, hudBallFill, easeInOut)
+    9. tela-resultado → resultScreen  (usa: kick, state, getSeriesResult, showEndScreen, resetRound)
+   10. cenario     → drawField, drawGoal, drawBall, drawPulse, drawHint
+   11. confete     → confettiParticles, spawnConfetti, drawConfetti
+   12. telas       → showEndScreen, resetRound, resetGame  (usa: spawnConfetti, hudBalls, dirSel, powSel)
+   13. loop        → loop(), input listener, requestAnimationFrame
+  -->
+  <script src="jogo/constantes.js"></script>
+  <script src="jogo/geometria.js"></script>
+  <script src="jogo/estado.js"></script>
+  <script src="jogo/goleiro.js"></script>
+  <script src="jogo/direcao.js"></script>
+  <script src="jogo/forca.js"></script>
+  <script src="jogo/hud.js"></script>
+  <script src="jogo/chute.js"></script>
+  <script src="jogo/tela-resultado.js"></script>
+  <script src="jogo/cenario.js"></script>
+  <script src="jogo/confete.js"></script>
+  <script src="jogo/telas.js"></script>
+  <script src="jogo/loop.js"></script>
+
+</body>
+
+</html>
