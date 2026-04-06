@@ -2,6 +2,8 @@
 
 // ─── TELA FINAL (vitória / derrota) ──────────────────────────────────────────
 function showEndScreen(result) {
+  if (result === 'win') addWin(); else addLoss();
+  markGameEnded();
   const titleEl = document.getElementById('end-title');
   const scoreEl = document.getElementById('end-score');
   const dotsEl  = document.getElementById('end-dots');
@@ -31,8 +33,10 @@ function resetRound() {
 
 // ─── REINICIA PARTIDA COMPLETA ────────────────────────────────────────────────
 function resetGame() {
+  markGameEnded();
   goals = 0; shots = 0; shotResults = [];
   confettiParticles = [];
+  confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
   resetHudBalls();
   dirSel.reset(); powSel.reset();
   document.getElementById('overlay-end').style.display = 'none';

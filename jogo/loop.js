@@ -58,14 +58,17 @@ function loop(ts) {
     drawHUD(dt);
   }
 
+  drawStats();
+
   requestAnimationFrame(loop);
 }
 
 // ─── ENTRADA DO JOGADOR ───────────────────────────────────────────────────────
 canvas.addEventListener('pointerdown', e => {
   e.preventDefault();
+  onActivity();
   if (state === ST.GAMEOVER) return;
-  if      (state === ST.DIR)   { dirSel.confirm(); powSel.reset(); state = ST.POWER; }
+  if      (state === ST.DIR)   { dirSel.confirm(); powSel.reset(); state = ST.POWER; markGameStarted(); }
   else if (state === ST.POWER) { powSel.confirm(); kick.start();   state = ST.KICK;  }
 }, { passive: false });
 
