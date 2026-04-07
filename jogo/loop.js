@@ -10,7 +10,7 @@ function loop(ts) {
   ctx.clearRect(0, 0, W(), H());
 
   drawField();
-  drawGoal();
+  drawGoal(); // 🔥 AGORA SEMPRE ANTES
 
   if (state === ST.GAMEOVER) {
     keeper.update(dt);
@@ -25,7 +25,7 @@ function loop(ts) {
     drawBall(bp.x, bp.y, bp.r);
     dirSel.update(dt);
     dirSel.draw();
-    drawHint('Toque para escolher a direção');
+    drawHint('Toque e escolha a direção');
     drawHUD(dt);
 
   } else if (state === ST.POWER) {
@@ -37,7 +37,7 @@ function loop(ts) {
     dirSel.draw();
     powSel.update(dt);
     powSel.draw();
-    drawHint('Toque para definir a força');
+    drawHint('Toque e defina a força');
     drawHUD(dt);
 
   } else if (state === ST.KICK) {
@@ -57,6 +57,16 @@ function loop(ts) {
     resultScreen.draw();
     drawHUD(dt);
   }
+
+  // animação do fundo
+  estadioTimer += dt;
+  if (estadioTimer > 300) {
+    estadioFrameIndex = (estadioFrameIndex + 1) % 2;
+    estadioTimer = 0;
+  }
+
+  // ── DEBUG: desenha hitboxes por cima de tudo ──────────────────────────────
+  drawHitboxes();
 
   drawStats();
 

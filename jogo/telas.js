@@ -40,6 +40,7 @@ function resetGame() {
   resetHudBalls();
   dirSel.reset(); powSel.reset();
   document.getElementById('overlay-end').style.display = 'none';
+  loadStats(); // atualiza placar do Firestore ao reiniciar
   // LOGIN desativado temporariamente:
   // document.getElementById('overlay-login').style.display = 'flex';
   // state = ST.LOGIN;

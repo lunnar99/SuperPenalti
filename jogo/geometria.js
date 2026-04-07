@@ -3,9 +3,9 @@
 // ─── DIMENSÕES DO GOL ─────────────────────────────────────────────────────────
 function getGoal() {
   const w = W(), h = H();
-  const gw   = w * 0.72, gh = h * 0.21;
-  const post = Math.max(6, w * 0.026);
-  return { x: (w - gw) / 2, y: h * 0.18, w: gw, h: gh, post };
+  const gw   = w * 0.82, gh = h * 0.34;
+  const post = Math.max(6, w * 0.044);
+  return { x: (w - gw) / 2, y: h * 0.10, w: gw, h: gh, post };
 }
 
 // ─── POSIÇÃO E RAIO DA BOLA ───────────────────────────────────────────────────
